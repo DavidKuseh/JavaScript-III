@@ -77,6 +77,28 @@
 //   - Give cars the ability to be repaired.
 //   - A repaired car can be driven again.
 
+//Car
+function Car (modelName, carMake) {
+  this.model = modelName;
+  this.make = carMake;
+  this.odometer = 0;
+  this.hasCrashed = true;
+}
+
+Car.prototype.drive = function(distance) {
+    if (hasCrashed == false){
+      return this.odometer += distance;
+    } else if(hasCrashed == true)
+    return 'I crashed at x miles!';
+};
+
+ Car.prototype.carCrash = function() {
+       this.hasCrashed = true;
+ };
+
+ Car.prototype.repairCar = function() {
+      this.hasCrashed = true;
+ };
 
   // TASK 3
 
@@ -84,6 +106,10 @@
   // - Babies of course inherit the ability to greet, which can be strange.
   // - Babies should have the ability to play, which persons don't.
   // - By playing, a string is returned with some text of your choosing.
+
+  //Baby
+
+  
 
   // TASK 4
 

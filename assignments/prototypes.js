@@ -129,7 +129,25 @@ Car.prototype.drive = function(distance) {
   // complicated one with lots of state. Surprise us!
 
 
+  function DistanceConverter(){
+    this.result = 0;
+  };
 
+  DistanceConverter.prototype.milesToKilometers = function(fInput,sInput,length) {
+      if (fInput === 'miles' && sInput === 'kilometers'){
+        return this.result = length * 1.60934 + ' kilometers';
+      } 
+      return "Enter 'miles' as first input and 'kilometers' as second input";
+  };
+
+  DistanceConverter.prototype.kilometersToMiles = function(fInput,sInput,length) {
+    if (fInput === 'kilometers' && sInput === 'miles'){
+      return this.result = length / 1.60934 + ' miles';
+    } 
+    return "Enter 'kilometers' as first input and 'miles' as second input";
+};
+
+ 
 /*
 
   STRETCH TASK

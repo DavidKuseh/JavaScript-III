@@ -90,15 +90,17 @@ Car.prototype.drive = function(distance) {
     if (carGood == true){
       return this.odometer += distance;
     } 
-    return `I crashed at x miles!`;
+    return `I crashed at ${this.odometer} miles!`;
 };
 
  Car.prototype.carCrash = function() {
        carCrashed = true;
+       carGood = false;
  };
 
  Car.prototype.repairCar = function() {
-      carGood = false;
+      carGood = true;
+      carCrashed = false;
  };
 
   // TASK 3
@@ -112,7 +114,7 @@ Car.prototype.drive = function(distance) {
   function Baby(name, age) {
     Person.call(this, name, age); 
   }
-  
+
   Baby.prototype = Object.create(Person.prototype);
   var baby = new Baby('Sonny', 2 ); 
   Baby.prototype.play = function () {

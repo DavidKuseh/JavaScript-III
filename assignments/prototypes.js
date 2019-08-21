@@ -45,32 +45,109 @@
   - When eating an edible, it should be pushed into a "stomach" property which is an array.
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
-
-  TASK 2
-
-  - Build a Car constructor that takes model name and make.
-  - Give cars the ability to drive a distance.
-  - By driving a car, the distance driven should be added to an "odometer" property.
-  - Give cars the ability to crash.
-  - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
-  - Give cars the ability to be repaired.
-  - A repaired car can be driven again.
-
-  TASK 3
-
-  - Build a Baby constructor that subclasses the Person built earlier.
-  - Babies of course inherit the ability to greet, which can be strange.
-  - Babies should have the ability to play, which persons don't.
-  - By playing, a string is returned with some text of your choosing.
-
-  TASK 4
-
-  Use your imagination and come up with constructors that allow to build objects
-  With amazing and original capabilities. Build 3 small ones, or a very
-  complicated one with lots of state. Surprise us!
-
 */
 
+//Person
+  function Person (personName,personAge) {  
+    this.name = personName;
+    this.age = personAge;
+    this.stomach = [];
+  }
+
+  Person.prototype.greet = function () {
+    return `Hello, I am ${this.name} and I am ${this.age} years old`;
+  }
+
+  Person.prototype.eat = function(eatFood) {
+    return this.stomach.push(eatFood);
+  }
+  
+  Person.prototype.poop = function() {
+    return this.stomach = [];
+  }
+
+
+// TASK 2
+
+//   - Build a Car constructor that takes model name and make.
+//   - Give cars the ability to drive a distance.
+//   - By driving a car, the distance driven should be added to an "odometer" property.
+//   - Give cars the ability to crash.
+//   - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
+//   - Give cars the ability to be repaired.
+//   - A repaired car can be driven again.
+
+//Car
+function Car (modelName, carMake) {
+  this.model = modelName;
+  this.make = carMake;
+  this.odometer = 0;
+  carGood = true;
+  carCrashed = false;
+}
+
+Car.prototype.drive = function(distance) {
+    if (carGood == true){
+      return this.odometer += distance;
+    } 
+    return `I crashed at ${this.odometer} miles!`;
+};
+
+ Car.prototype.carCrash = function() {
+       carCrashed = true;
+       carGood = false;
+ };
+
+ Car.prototype.repairCar = function() {
+      carGood = true;
+      carCrashed = false;
+ };
+
+  // TASK 3
+
+  // - Build a Baby constructor that subclasses the Person built earlier.
+  // - Babies of course inherit the ability to greet, which can be strange.
+  // - Babies should have the ability to play, which persons don't.
+  // - By playing, a string is returned with some text of your choosing.
+
+  //Baby
+  function Baby(name, age) {
+    Person.call(this, name, age); 
+  }
+
+  Baby.prototype = Object.create(Person.prototype);
+  var baby = new Baby('Sonny', 2 ); 
+  Baby.prototype.play = function () {
+    return `Plays all day`;
+  }
+  
+
+  // TASK 4
+
+  // Use your imagination and come up with constructors that allow to build objects
+  // With amazing and original capabilities. Build 3 small ones, or a very
+  // complicated one with lots of state. Surprise us!
+
+
+  function DistanceConverter(){
+    this.result = 0;
+  };
+
+  DistanceConverter.prototype.milesToKilometers = function(fInput,sInput,length) {
+      if (fInput === 'miles' && sInput === 'kilometers'){
+        return this.result = length * 1.60934 + ' kilometers';
+      } 
+      return "Enter 'miles' as first input and 'kilometers' as second input";
+  };
+
+  DistanceConverter.prototype.kilometersToMiles = function(fInput,sInput,length) {
+    if (fInput === 'kilometers' && sInput === 'miles'){
+      return this.result = length / 1.60934 + ' miles';
+    } 
+    return "Enter 'kilometers' as first input and 'miles' as second input";
+};
+
+ 
 /*
 
   STRETCH TASK

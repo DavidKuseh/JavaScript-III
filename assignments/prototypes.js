@@ -82,22 +82,23 @@ function Car (modelName, carMake) {
   this.model = modelName;
   this.make = carMake;
   this.odometer = 0;
-  this.hasCrashed = true;
+  carGood = true;
+  carCrashed = false;
 }
 
 Car.prototype.drive = function(distance) {
-    if (hasCrashed == false){
+    if (carGood == true){
       return this.odometer += distance;
-    } else if(hasCrashed == true)
-    return 'I crashed at x miles!';
+    } 
+    return `I crashed at x miles!`;
 };
 
  Car.prototype.carCrash = function() {
-       this.hasCrashed = true;
+       carCrashed = true;
  };
 
  Car.prototype.repairCar = function() {
-      this.hasCrashed = true;
+      carGood = false;
  };
 
   // TASK 3
@@ -108,7 +109,15 @@ Car.prototype.drive = function(distance) {
   // - By playing, a string is returned with some text of your choosing.
 
   //Baby
-
+  function Baby(name, age) {
+    Person.call(this, name, age); 
+  }
+  
+  Baby.prototype = Object.create(Person.prototype);
+  var baby = new Baby('Sonny', 2 ); 
+  Baby.prototype.play = function () {
+    return `Plays all day`;
+  }
   
 
   // TASK 4
